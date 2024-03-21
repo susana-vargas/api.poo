@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var express_1 = require("express");
+var get_user_controller_1 = require("../controllers/get-user.controller");
+var post_user_controller_1 = require("../controllers/post-user.controller");
+var router = (0, express_1.Router)();
+var getUserController = new get_user_controller_1.GetUserController();
+router.get('/', getUserController.getAll.bind(getUserController));
+router.get('/:id', getUserController.getId.bind(getUserController));
+var postUserController = new post_user_controller_1.default(getUserController);
+router.post('/', postUserController.create.bind(postUserController));
+exports.default = router;
